@@ -1,0 +1,14 @@
+[Unit]
+# Human readable name of the unit
+Description=Thermald Checker
+
+[Service]
+WorkingDirectory=/home/thomas/bin
+# Command to execute when the service is started
+ExecStart=/usr/bin/python3 -u /home/thomas/bin/reloadthermald.py
+Environment="PYTHONPATH=$PYTHONPATH:/home/thomas/.local/lib/python3.10/site-packages" "DISPLAY=:0" "XAUTHORITY=/home/thomas/.Xauthority"
+Restart=on-failure
+
+
+[Install]
+WantedBy=default.target
