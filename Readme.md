@@ -9,6 +9,7 @@ This script checks the temps and clocks of the cpu every 5 seconds. If the clock
 Install the required dependencies by running:
 
 ```bash
+sudo apt install libsystemd-dev
 pip3 install -r requirements.txt
 ```
 
