@@ -1,12 +1,13 @@
 #!/usr/bin/env python -u
 if __name__ == '__main__':
-    import subprocess
     import time
-
+    from pystemd.systemd1 import Unit
     import notify2
     import psutil
 
     notify2.init('Thermald checker')
+    unit = Unit('thermald.service')
+    unit.load()
     while True:
         last_clocks = []
         last_temps = []
@@ -24,7 +25,6 @@ if __name__ == '__main__':
             reload_thermald = True
 
         if (reload_thermald == True):
-            call = ['systemctl', 'reload', 'thermald']
             print('--- Temps ---')
             print(last_temps)
             print('------')
@@ -33,5 +33,5 @@ if __name__ == '__main__':
             print('------')
             print('reload thermald!')
             notify2.Notification('Thermald Checker', 'We should reload Thermald!').show()
-            subprocess.check_call(call)
+            unit.Unit.Restart('replace')
         time.sleep(5)
