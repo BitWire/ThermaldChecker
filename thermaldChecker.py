@@ -2,10 +2,8 @@
 if __name__ == '__main__':
     import time
     from pystemd.systemd1 import Unit
-    import notify2
     import psutil
 
-    notify2.init('Thermald checker')
     unit = Unit('thermald.service')
     unit.load()
     while True:
@@ -32,6 +30,5 @@ if __name__ == '__main__':
             print(last_clocks)
             print('------')
             print('reload thermald!')
-            notify2.Notification('Thermald Checker', 'We should reload Thermald!').show()
             unit.Unit.Restart('replace')
         time.sleep(5)
