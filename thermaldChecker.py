@@ -31,4 +31,4 @@ if __name__ == '__main__':
             print('------')
             print('reload thermald!')
             unit.Unit.Restart('replace')
-        time.sleep(5)
+        time.sleep(2)
